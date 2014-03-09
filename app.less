@@ -1,0 +1,29 @@
+@cell-width: 100px;
+body{
+  text-align:center;
+}
+.board{ 
+  width: 3 * @cell-width; 
+  margin:auto; 
+}
+.cells{ 
+  height: 3 * @cell-width; 
+}
+.cell.btn{
+  width:@cell-width;
+  height:@cell-width;
+  font-size:@cell-width * .7;
+  line-height:@cell-width * .8;
+  float:left;
+  &:nth-child(3n+1){ 
+    clear:left; 
+  }
+}
+.hud{
+  text-align: center;
+  margin-top:20px;
+  clear:both;
+  .info{ 
+    font-size:1.4em; 
+  }
+}

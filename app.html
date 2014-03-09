@@ -1,0 +1,32 @@
+<head>
+  <title>Meteor Tic Tac Toe</title> 
+</head>
+
+<body>
+  <h2>Tic Tac Toe <small>in Meteor</small></h2>
+  {{> board}}
+</body>
+
+<template name="board">
+  <div class="board">    
+    <div class="hud">
+      <div class="info alert alert-{{#if winner}}success{{else}}warning{{/if}}">
+        {{#if winner}}
+          Winner is <strong>{{winner}}</strong>!
+        {{else}}
+          <strong>{{currentPlayer}}</strong>'s turn!
+        {{/if}}
+      </div>
+    </div>
+    <div class="cells">
+      {{#each cells}}
+        <div class="cell btn {{buttonType}}">{{type}}</div>
+      {{/each}}
+    </div>
+    <div class="hud">
+      <div class="btn btn-danger btn-lg restart-game">Restart Game</div>
+    </div>
+    <hr>
+    <p><a href="mailto:chris@hitchcott.com">Chris Hitchcott</a> | <a target="_blank" href="http://github.com/hitchcott">Github</a></p>
+  </div>
+</template>
