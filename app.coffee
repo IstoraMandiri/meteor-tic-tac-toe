@@ -5,6 +5,7 @@
 @Cells = new Meteor.Collection 'cells'
 
 gameSummary = ->
+
   winningCombos = [
     ['0','1','2']
     ['3','4','5']
@@ -15,12 +16,13 @@ gameSummary = ->
     ['0','4','8']
     ['2','4','6']
   ]
-  
+
   pickedCells = {}
   for cell in Cells.find().fetch()
     if cell.type?
       pickedCells[cell.type]?= []
       pickedCells[cell.type].push cell._id
+  
   winners = {}
   for key, val of pickedCells
     for combo in winningCombos
@@ -29,6 +31,7 @@ gameSummary = ->
       if pickedWinningCombo
         winners[key] = true
         winners.winningCells = combo
+  
   return winners
 
 
@@ -54,7 +57,7 @@ if Meteor.isClient
     buttonType : -> if @winning then 'btn-success' else if @type? then 'btn-primary' else 'btn-default'
 
   # event hooks
-  Template.board.events =
+  Template.board.events
     'click .restart-game': -> Meteor.call 'restartGame'    
     'click .cell': ->
       unless Cells.findOne({_id:@_id})?.type? or getWinner()
